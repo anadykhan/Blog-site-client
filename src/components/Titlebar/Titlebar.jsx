@@ -11,8 +11,8 @@ import { makeStyles } from '@mui/styles';
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 
 const useStyles = makeStyles({
-    customHeight: {
-        minHeight: '6.5rem'
+    customAppBar: {
+        minHeight: '6.5rem',
     }
 })
 
@@ -28,15 +28,15 @@ const Titlebar = () => {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar
             position="static"
-            color=''
             elevation={0}
+            color=''
             >
                 <Toolbar>
                     <Grid 
                     container
                     justifyContent='space-between'
                     alignItems='center'
-                    className={classes.customHeight}
+                    className={classes.customAppBar}
                     >
                         <Grid item>
                             <IconButton

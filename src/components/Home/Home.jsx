@@ -1,6 +1,10 @@
+import { Card } from "@mui/material"
+
 const Home = () => {
   return (
-    <div>This is the home component</div>
+    <div>
+      <Card></Card>
+    </div>
   )
 }
 export default Home
