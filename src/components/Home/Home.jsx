@@ -1,9 +1,11 @@
-import { Card } from "@mui/material"
+import Blog from "../Blog/Blog"
 
 const Home = () => {
   return (
     <div>
-      <Card></Card>
+      <div className="my-10">
+        <Blog></Blog>
+      </div>
     </div>
   )
 }
