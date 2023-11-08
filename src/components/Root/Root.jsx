@@ -6,8 +6,11 @@ const Root = () => {
   return (
     <div className="w-full flex justify-center">
       <div className="w-[60rem]">
+
         <Titlebar></Titlebar>
-        <Navbar></Navbar>
+        <div className="mb-10">
+          <Navbar></Navbar>
+        </div>
         <Outlet></Outlet>
       </div>
     </div>
