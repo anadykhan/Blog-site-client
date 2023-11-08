@@ -1,4 +1,4 @@
-import { Card, Chip, Grid, Toolbar } from "@mui/material"
+import { Card, Grid, Toolbar } from "@mui/material"
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -18,8 +18,14 @@ const BlogCard = () => {
               <CardContent>
                 <Toolbar
                 disableGutters
-                sx={{alignItems: 'start', gap: '0.5rem', flexDirection: 'column-reverse'}}
+                sx={{alignItems: 'start', flexDirection: 'column-reverse'}}
                 >
+                    <Typography
+                    variant='caption'
+                    sx={{marginBottom: '0.3rem'}}
+                    >
+                        by Fardina Jones 
+                    </Typography>
                       <Typography gutterBottom variant="h5" component="div"
                       >
                           Lizard
