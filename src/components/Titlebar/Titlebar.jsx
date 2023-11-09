@@ -45,8 +45,13 @@ const Titlebar = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const handleSubmit = () => {
-        console.log('button working ')
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const email = e.target.email.value
+        const password = e.target.password.value
+
+        console.log(email, password)
+        
     }
 
     const classes = useStyles();
@@ -119,13 +124,14 @@ const Titlebar = () => {
                         Log in to your account
                     </Typography>
 
-                    <Box>
-                        {/* Use Box or another appropriate container component instead of Typography */}
+                    <form onSubmit={handleSubmit}>
+
                         <TextField
                             name="email"
                             helperText="Please enter your email"
                             id="demo-helper-text-misaligned"
                             label="Email"
+                            defaultValue=""
                             sx={{
                                 "& fieldset": {
                                     borderRadius: 0,
@@ -143,15 +149,13 @@ const Titlebar = () => {
                                 },
                             }}
                         />
-                    </Box>
 
-                    <Box>
-                        {/* Use Box or another appropriate container component instead of Typography */}
                         <TextField
                             name="password"
                             helperText="Please enter your Password"
                             id="demo-helper-text-misaligned"
                             label="Password"
+                            defaultValue=""
                             sx={{
                                 "& fieldset": {
                                     borderRadius: 0,
@@ -169,17 +173,16 @@ const Titlebar = () => {
                                 },
                             }}
                         />
-                    </Box>
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        fullWidth
-                        sx={{ background: 'black', borderRadius: '0px' }}
-                        onClick={handleSubmit}
-                    >
-                        Submit
-                    </Button>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            fullWidth
+                            sx={{ background: 'black', borderRadius: '0px' }}
+                        >
+                            Submit
+                        </Button>
 
+                    </form>
                     <Typography
                         variant="body2"
                         align="center"
