@@ -1,9 +1,20 @@
-import { Box, Typography } from "@mui/material"
+import { Avatar, Box, TextField, Typography } from "@mui/material"
+import Comment from "../Comment/Comment"
+import { Button } from "@mui/base"
 
 const BlogDetails = () => {
+
+    const handleComment = (e) => {
+        e.preventDefault()
+        const comment = e.target.comment.value
+        console.log(comment)
+    }
+
     return (
-        <div>
-            <Box width={650}>
+        <div className="flex justify-between gap-10">
+            <Box 
+            width={650}
+            >
                 <Box
                 display="flex"
                 flexDirection='column'
@@ -42,7 +53,42 @@ const BlogDetails = () => {
                 </Box>
             </Box>
             <div>
-
+                <Typography
+                variant="h6"
+                >
+                    Comments
+                </Typography>
+                <Box>
+                    <Box
+                        display="flex"
+                        alignItems="center"
+                        marginBottom={2}
+                        padding={2}
+                        borderBottom="1px solid #ccc"
+                    >
+                        <Avatar />
+                        <Box marginLeft={2} width="100%">
+                            <form onSubmit={handleComment}>
+                                <TextField
+                                    name="comment"
+                                    fullWidth
+                                    variant="standard"
+                                    label="Add a comment..."
+                                    multiline
+                                />
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    type="submit"
+                                    style={{ marginTop: '8px', background: 'black', color: 'white', padding: '0.4rem', fontSize: '0.7rem' }}
+                                >
+                                    Comment
+                                </Button>
+                            </form>
+                        </Box>
+                    </Box>
+                </Box>
+                <Comment></Comment>
             </div>
         </div>
     )
