@@ -66,10 +66,10 @@ const Blog = () => {
             component="a"
             href="#basic-chip"
             clickable
-            sx={{background: 'black', color: 'white'}}
+            sx={{ background: 'black', color: 'white' }}
           />
         </Typography>
-        <Typography variant="h3" component="div" sx={{fontWeight: '500'}}>
+        <Typography variant="h3" component="div" sx={{ fontWeight: '500' }}>
           NFT Art Culture
         </Typography>
         <Typography variant="body2" color="white">
