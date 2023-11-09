@@ -67,6 +67,12 @@ const Navbar = () => {
                                 >
                                     About Us
                                 </Button>
+                                <Button
+                                    sx={{ my: 2, color: 'black', display: 'block' }}
+
+                                >
+                                    <NavLink to='/registraion'> Join US</NavLink>
+                                </Button>
                             </Box>
                         </Grid>
                     </Grid>

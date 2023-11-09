@@ -2,7 +2,9 @@ import BlogCard from "../BlogCard/BlogCard"
 
 const Trendings = () => {
   return (
-    <div>
+    <div className="flex justify-between">
+      <BlogCard></BlogCard>
+      <BlogCard></BlogCard>
       <BlogCard></BlogCard>
     </div>
   )

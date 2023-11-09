@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import { FormGroup, Grid, TextField } from "@mui/material";
+import { Grid, TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
 
@@ -14,7 +14,6 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import { Link } from "react-router-dom";
-import { FormControl } from "@mui/base";
 
 const useStyles = makeStyles({
     customAppBar: {
@@ -186,8 +185,9 @@ const Titlebar = () => {
                     <Typography
                         variant="body2"
                         align="center"
+                        onClick={handleClose}
                     >
-                        Do you have an account? If not <Link className="font-bold">Create One</Link>
+                        Do you have an account? If not <Link className="font-bold" to='/registraion'>Create One</Link>
                     </Typography>
                 </Box>
             </Modal>

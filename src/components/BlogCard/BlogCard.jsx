@@ -5,10 +5,17 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography'; 
 import AddIcon from '@mui/icons-material/Add';
+import { useNavigate } from "react-router-dom";
 
 const BlogCard = () => {
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    navigate('/blogdetails')  
+  }
+
   return (
-    <div>
+    <div onClick={handleClick}>
           <Card sx={{ maxWidth: 300 , boxShadow: 'none', borderRadius: '0' }}>
               <CardMedia
                   sx={{ height: 140 }}
