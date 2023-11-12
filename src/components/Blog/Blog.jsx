@@ -3,6 +3,10 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { makeStyles } from '@mui/styles';
 import { Chip } from '@mui/material';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { useState } from 'react';
+import { useUsersByIdData } from '../../hooks/hooks'
 
 const useStyles = makeStyles({
   card: {
@@ -45,14 +49,22 @@ const useStyles = makeStyles({
   },
 });
 
-const Blog = () => {
+const Blog = ({ data }) => {
 
-  const classes = useStyles();
+  const { title, imageURL, owner } = data;
+  const { name, isLoading } = useUsersByIdData(owner);
+  const classes = useStyles(); // Move useStyles here unconditionally
+  
+  if(isLoading){
+    return 'Loading'
+  }
+  
+  //console.log(name)
 
   return (
     <Card className={classes.card}>
       <img
-        src="https://i.ibb.co/tXMfHQz/1542.jpg" // Replace with your image URL
+        src={imageURL} // Replace with your image URL
         alt="Card Background"
         className={classes.image}
       />
@@ -70,10 +82,10 @@ const Blog = () => {
           />
         </Typography>
         <Typography variant="h3" component="div" sx={{ fontWeight: '500' }}>
-          NFT Art Culture
+          {title}
         </Typography>
         <Typography variant="body2" color="white">
-          by Sandra Jones
+          by {name.name}
         </Typography>
         <Typography variant="body2" color="white">
           This is the content of the card overlaying the image.

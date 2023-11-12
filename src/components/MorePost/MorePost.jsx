@@ -6,10 +6,16 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import AddIcon from '@mui/icons-material/Add';
 import { useNavigate } from "react-router-dom";
+import { useUsersByIdData } from "../../hooks/hooks";
 
-const MorePost = () => {
-
+const MorePost = ({ data }) => {
+    const { title, imageURL, owner } = data;
+    const { name, isLoading } = useUsersByIdData(owner);
     const naviagate = useNavigate()
+
+    if (isLoading) {
+        return 'Loading'
+    }
 
     const handleClick = () => {
         naviagate('/blogdetails')
@@ -40,13 +46,13 @@ const MorePost = () => {
                                 component="div"
                                 sx={{ marginBottom: '0rem' }}
                             >
-                                Lizard
+                                {title}
                             </Typography>
                             <Typography
                                 variant='caption'
                                 sx={{ marginBottom: '0.3rem' }}
                             >
-                                by Fardina Jones
+                                by {name.name}
                             </Typography>
                         </Box>
 
