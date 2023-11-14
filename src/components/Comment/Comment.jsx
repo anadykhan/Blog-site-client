@@ -1,6 +1,9 @@
 import { Avatar, Box, Typography } from "@mui/material"
 
-const Comment = () => {
+const Comment = ({data}) => {
+
+  const {name, comment} = data
+
   return (
       <Box
           display="flex"
@@ -12,9 +15,9 @@ const Comment = () => {
           <Avatar />
           <Box marginLeft={2}>
               <Typography variant="subtitle1" fontWeight="bold">
-                John Doe
+                {name}
               </Typography>
-              <Typography variant="body2">This Comment is from John Doe</Typography>
+              <Typography variant="body2">{comment}</Typography>
           </Box>
       </Box>
   )

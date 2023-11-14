@@ -26,8 +26,20 @@ const fetchUsers = () => {
     return axios.get('http://localhost:8080/users')
 }
 
+const fetchComments = () => {
+    return axios.get('http://localhost:8080/comments')
+}
+
 const fetchUsersByID = (ownerID) => {
     return axios.get(`http://localhost:8080/users/${ownerID}`);
+}
+
+const fetchBlogsByID = (blogID) => {
+    return axios.get(`http://localhost:8080/blogs/${blogID}`)
+}
+
+const fetchBlogCommentsByID = (blogID) => {
+    return axios.get(`http://localhost:8080/blogs/comments/${blogID}`)
 }
 
 export const useBlogsData = () => {
@@ -42,6 +54,22 @@ export const useUsersData = () => {
         queryKey: ["users"],
         queryFn: fetchUsers,
     })
+}
+
+export const useCommentsData = () => {
+    return useQuery({
+        queryKey: ['comments'],
+        queryFn: fetchComments
+    })
+}
+
+export const useBlogsByIdData = (blogID) => {
+    const { data, isLoading } = useQuery({
+        queryKey: ['blogs', blogID],
+        queryFn: () => fetchBlogsByID(blogID)
+    })
+
+    return { data, isLoading }
 }
 
 export const useUsersByIdData = (ownerID) => {
@@ -66,3 +94,32 @@ export const useSortedBlogsOwnersData = () => {
 
     return { sortedBlogsData, blogsLoading, usersData, usersLoading };
 }
+
+export const useBlogWithOwnerData = (blogID) => {
+    const blogQuery = useQuery({
+        queryKey: ["blogs", blogID],
+        queryFn: () => fetchBlogsByID(blogID),
+    });
+
+    const ownerQuery = useQuery({
+        enabled: !!blogQuery?.data?.data?.owner, 
+        queryKey: ["users", blogQuery?.data?.data?.owner],
+        queryFn: () => fetchUsersByID(blogQuery?.data?.data?.owner),
+    });
+
+    const commentQuery = useQuery({
+        enabled: !!ownerQuery?.data?.data?._id,
+        queryKey: ['comments', ownerQuery?.data?.data?._id],
+        queryFn: () => fetchBlogCommentsByID(blogID)
+    })
+
+
+    return {
+        blogData: blogQuery.data?.data,
+        blogLoading: blogQuery.isLoading,
+        ownerData: ownerQuery?.data?.data,
+        ownerLoading: ownerQuery?.isLoading,
+        commentData: commentQuery?.data?.data,
+        commentLoading: commentQuery?.isLoading
+    };
+};

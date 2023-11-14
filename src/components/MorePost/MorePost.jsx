@@ -9,28 +9,30 @@ import { useNavigate } from "react-router-dom";
 import { useUsersByIdData } from "../../hooks/hooks";
 
 const MorePost = ({ data }) => {
-    const { title, imageURL, owner } = data;
+    const { _id, title, imageURL, owner } = data;
     const { name, isLoading } = useUsersByIdData(owner);
-    const naviagate = useNavigate()
+    const navigate = useNavigate()
 
     if (isLoading) {
         return 'Loading'
     }
 
     const handleClick = () => {
-        naviagate('/blogdetails')
+        console.log(_id)
+        navigate(`/blogdetails/${_id}`)
     }
     return (
-        <div onClick={handleClick}>
+        <div>
             <Card sx={{ display: 'flex', boxShadow: 'none', width: '43rem', borderRadius: '0rem', gap: '1rem' }}>
                 <CardMedia
                     component="img"
                     sx={{ width: 350 }}
                     image="https://i.ibb.co/tXMfHQz/1542.jpg"
                     alt="Live from space album cover"
+                    onClick={handleClick}
                 />
                 <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'justify' }}>
-                    <CardContent sx={{ flex: '1 0 auto', width: 'full' }}>
+                    <CardContent sx={{ flex: '1 0 auto', width: 'full' }} onClick={handleClick}>
                         <Box
                             sx={{ marginBottom: '1rem' }}
                         >
@@ -62,7 +64,10 @@ const MorePost = ({ data }) => {
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button size="small">
+                        <Button 
+                        size="small"
+                        style={{background: 'black', borderRadius: '0px', color: 'white', paddingRight: '15px'}}
+                        >
                             <Grid
                                 container
                                 alignItems='center'

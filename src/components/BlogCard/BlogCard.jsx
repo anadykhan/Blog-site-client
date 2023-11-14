@@ -10,7 +10,7 @@ import { useUsersByIdData } from "../../hooks/hooks";
 
 const BlogCard = ({ data }) => {
   const navigate = useNavigate()
-  const { title, imageURL, owner } = data;
+  const { _id, title, imageURL, owner } = data;
   const { name, isLoading } = useUsersByIdData(owner);
 
   if (isLoading) {
@@ -18,18 +18,21 @@ const BlogCard = ({ data }) => {
   }
 
   const handleClick = () => {
-    navigate('/blogdetails')
+    navigate(`/blogdetails/${_id}`)
   }
 
   return (
-    <div onClick={handleClick}>
+    <div>
       <Card sx={{ maxWidth: 300, boxShadow: 'none', borderRadius: '0' }}>
         <CardMedia
           sx={{ height: 140 }}
           image={imageURL}
           title="green iguana"
+          onClick={handleClick}
         />
-        <CardContent>
+        <CardContent
+        onClick={handleClick}
+        >
           <Toolbar
             disableGutters
             sx={{ alignItems: 'start', flexDirection: 'column-reverse' }}
@@ -57,7 +60,10 @@ const BlogCard = ({ data }) => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">
+          <Button 
+          size="small"
+          style={{ background: 'black', borderRadius: '0px', color: 'white', paddingRight: '15px' }}
+          >
             <Grid
               container
               alignItems='center'

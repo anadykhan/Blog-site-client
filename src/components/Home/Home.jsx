@@ -7,17 +7,17 @@ import MorePost from "../MorePost/MorePost"
 
 const Home = () => {
 
-  const { sortedData  , isLoading} = useSortedBlogsData()
+  const { data  , isLoading} = useBlogsData()
 
   if(isLoading) {
     return "Is loading"
   }
 
-  console.log(sortedData)
+  console.log(data)
 
-  const chunk1 = sortedData[0]
-  const chunk2 = sortedData.slice(1, 4)
-  const chunk3 = sortedData.slice(5, 11)
+  const chunk1 = data.data[0]
+  const chunk2 = data.data.slice(1, 4)
+  const chunk3 = data.data.slice(5, 7)
   
   console.log('The chunk is:', chunk3)
 
